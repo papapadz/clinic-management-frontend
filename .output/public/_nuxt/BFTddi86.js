@@ -1,1 +1,0 @@
-import{_ as t,h as n,e as s,N as o}from"./C23FZWVl.js";const r={};function a(l,e){return o(),n("div",null,[...e[0]||(e[0]=[s("h1",{class:"text-2xl font-bold mb-4"},"User Management",-1),s("div",{class:"text-muted-foreground"},"Coming soon: user list, roles, and invitations.",-1)])])}const d=t(r,[["render",a]]);export{d as default};

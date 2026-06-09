@@ -1,0 +1,6 @@
+import{_ as c}from"./BwqtVI-s.js";import{c as d}from"./CQIs3J8B.js";import{l as n,h as m,e as a,k as s,a8 as i,a2 as u,W as p,O as f}from"./BVnX7aLZ.js";/**
+ * @license lucide-vue-next v0.469.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const h=d("SearchIcon",[["circle",{cx:"11",cy:"11",r:"8",key:"4ej97u"}],["path",{d:"m21 21-4.3-4.3",key:"1qie3q"}]]),b={class:"flex flex-col gap-3 rounded-xl border border-border/80 bg-card/80 p-3 shadow-sm backdrop-blur sm:flex-row sm:items-center sm:justify-between"},_={class:"relative min-w-0 flex-1 sm:max-w-md"},x={class:"sr-only"},y={class:"flex shrink-0 flex-wrap items-center gap-2"},V=n({__name:"SearchToolbar",props:{modelValue:{},placeholder:{default:"Search"},label:{default:"Search records"}},emits:["update:modelValue"],setup(e){return(l,o)=>{const t=c;return f(),m("div",b,[a("label",_,[s(i(h),{class:"pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground","aria-hidden":"true"}),a("span",x,u(e.label),1),s(t,{"model-value":e.modelValue,type:"search",class:"pl-9",placeholder:e.placeholder,"onUpdate:modelValue":o[0]||(o[0]=r=>l.$emit("update:modelValue",r))},null,8,["model-value","placeholder"])]),a("div",y,[p(l.$slots,"default")])])}}});export{V as _};

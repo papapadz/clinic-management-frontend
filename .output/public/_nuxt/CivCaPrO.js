@@ -1,0 +1,1 @@
+import{_ as o}from"./m4UdBlO9.js";import{l as r,f as m,O as p}from"./BVnX7aLZ.js";import"./DGX-x3uR.js";import"./Db2zl6YW.js";import"./DkdKsmM5.js";import"./CXrxElxz.js";import"./kIYyKdtO.js";import"./BhaQbA9d.js";import"./CQIs3J8B.js";import"./DGSnaVxT.js";const k=r({__name:"batch-print",setup(e){return(n,a)=>{const t=o;return p(),m(t,{kind:"lab"})}}});export{k as default};

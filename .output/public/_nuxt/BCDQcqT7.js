@@ -1,0 +1,1 @@
+import{_ as e,h as t,e as o,O as c}from"./BVnX7aLZ.js";const s={};function i(r,n){return c(),t("div",null,[...n[0]||(n[0]=[o("h1",{class:"text-2xl font-bold mb-4"},"Clinic Settings",-1),o("div",{class:"text-muted-foreground"},"Coming soon: clinic info, logo, and configuration.",-1)])])}const a=e(s,[["render",i]]);export{a as default};

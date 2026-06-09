@@ -1,0 +1,1 @@
+import{ah as u}from"./BVnX7aLZ.js";function o(n){return e(n,"autoprint")}function e(n,r){const t=n.includes("?")?"&":"?";return`${n}${t}${r}=1`}function a(){const n=u();function r(t){n.push(o(t))}return{launchPrint:r}}export{a as u};

@@ -1,0 +1,6 @@
+import{c}from"./CQIs3J8B.js";import{l as i,h as o,e as a,f as d,$ as l,a8 as m,a2 as r,g as n,W as p,O as t}from"./BVnX7aLZ.js";/**
+ * @license lucide-vue-next v0.469.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const x=c("InboxIcon",[["polyline",{points:"22 12 16 12 14 15 10 15 8 12 2 12",key:"o97t9d"}],["path",{d:"M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z",key:"oot6mr"}]]),f={class:"flex min-h-56 flex-col items-center justify-center rounded-xl border border-dashed border-border bg-card/70 px-6 py-10 text-center"},u={class:"mb-4 rounded-2xl bg-primary/10 p-4 text-primary"},h={class:"text-base font-bold text-foreground"},y={key:0,class:"mt-2 max-w-md text-sm leading-6 text-muted-foreground"},b={key:1,class:"mt-5 flex flex-wrap justify-center gap-2"},v=i({__name:"EmptyState",props:{title:{},description:{},icon:{}},setup(e){return(s,_)=>(t(),o("div",f,[a("div",u,[(t(),d(l(e.icon??m(x)),{class:"h-7 w-7","aria-hidden":"true"}))]),a("h2",h,r(e.title),1),e.description?(t(),o("p",y,r(e.description),1)):n("",!0),s.$slots.actions?(t(),o("div",b,[p(s.$slots,"actions")])):n("",!0)]))}});export{v as _};
