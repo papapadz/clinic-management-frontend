@@ -1,0 +1,1 @@
+import{_ as o,h as s,e as t,N as n}from"./C23FZWVl.js";const r={};function a(l,e){return n(),s("div",null,[...e[0]||(e[0]=[t("h1",{class:"text-2xl font-bold mb-4"},"Laboratory Requests",-1),t("div",{class:"text-muted-foreground"},"Coming soon: lab request pipeline, results, and validation.",-1)])])}const c=o(r,[["render",a]]);export{c as default};

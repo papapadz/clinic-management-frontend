@@ -1,0 +1,1 @@
+import{m as s,a8 as i,z as n}from"./C23FZWVl.js";const l=s(a=>{var t,o,r;const u=i(),e=(t=a.meta)==null?void 0:t.role;if(e&&!((r=(o=u.user)==null?void 0:o.roles)!=null&&r.includes(e)))return n("/unauthorized")});export{l as default};
