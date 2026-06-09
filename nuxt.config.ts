@@ -69,7 +69,7 @@ export default defineNuxtConfig({
     server: {
       proxy: {
         '/api': {
-          target: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:8000',
+          target: process.env.NUXT_PUBLIC_API_BASE_URL || 'https://purple-monkey-669831.hostingersite.com',
           changeOrigin: true,
         },
       },

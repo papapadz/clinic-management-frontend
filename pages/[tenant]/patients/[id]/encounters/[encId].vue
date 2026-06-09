@@ -534,6 +534,10 @@ async function submitQuickOrder() {
       total_amount: quantity * unitPrice,
       notes: optional(pharmacyForm.notes),
     })
+    
+    if(item)
+      soapForm.medications += `\n#${pharmacyForm.quantity} ${item.generic_name} (${item.brand_name}) ${item.strength} ${item.dosage_form} - ${pharmacyForm.notes}`
+    saveSoap()
   } else if (activeOrder.value === 'appointment') {
     try {
       res = await encounterService.createAppointment(buildAppointmentPayload(summaryData.value, appointmentForm))
