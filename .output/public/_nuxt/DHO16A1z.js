@@ -1,0 +1,1 @@
+import{_ as s,h as n,e as o,N as t}from"./C23FZWVl.js";const r={};function a(l,e){return t(),n("div",null,[...e[0]||(e[0]=[o("h1",{class:"text-2xl font-bold mb-4"},"Role Management",-1),o("div",{class:"text-muted-foreground"},"Coming soon: role assignment and permissions.",-1)])])}const d=s(r,[["render",a]]);export{d as default};

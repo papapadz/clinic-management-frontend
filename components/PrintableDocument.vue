@@ -1,12 +1,20 @@
 <template>
   <main class="print-document mx-auto max-w-4xl bg-white p-6 text-slate-950 shadow-sm print:mx-0 print:max-w-none print:p-0 print:shadow-none">
-    <header class="border-b-2 border-slate-900 pb-4">
+    <header class="border-b-2 border-slate-900 pb-4" :style="headerStyle">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <div>
+        <div class="flex min-w-0 gap-3">
+          <img
+            v-if="document.facility.logo_url"
+            :src="document.facility.logo_url"
+            alt=""
+            class="h-14 w-14 shrink-0 object-contain"
+          >
+          <div class="min-w-0">
           <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Clinic document</p>
           <h1 class="mt-1 text-2xl font-bold text-slate-950">{{ document.facility.tenant_name || 'Clinic' }}</h1>
           <p v-if="subtitle" class="mt-1 text-sm text-slate-600">{{ subtitle }}</p>
           <p v-if="document.facility.email" class="mt-1 text-sm text-slate-600">{{ document.facility.email }}</p>
+          </div>
         </div>
         <div class="text-left sm:text-right">
           <h2 class="text-xl font-bold text-slate-950">{{ document.title }}</h2>
@@ -109,4 +117,8 @@ const props = defineProps<{
 
 const subtitle = computed(() => printableSubtitle(props.document))
 const itemColumns = computed(() => printableLineItemColumns(props.document.line_items))
+const headerStyle = computed(() => {
+  const primary = props.document.facility.theme?.primary
+  return primary ? { borderColor: primary } : undefined
+})
 </script>

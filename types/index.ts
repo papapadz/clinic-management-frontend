@@ -60,6 +60,41 @@ export interface Tenant {
   created_at: string
 }
 
+export interface ClinicTheme {
+  primary?: string | null
+  secondary?: string | null
+  accent?: string | null
+}
+
+export interface DefaultClinicProfile {
+  id: string | number
+  name: string
+  address?: string | null
+  contact_number?: string | null
+  email?: string | null
+  website?: string | null
+  logo?: {
+    disk?: string
+    path?: string
+    original_name?: string
+    mime_type?: string
+    size?: number
+    uploaded_at?: string
+  } | null
+  logo_url?: string | null
+  theme?: ClinicTheme | null
+}
+
+export interface ClinicProfileResponse {
+  tenant: {
+    id: string
+    name: string
+    slug: string
+    status: string
+  }
+  default_clinic: DefaultClinicProfile | null
+}
+
 /**
  * Patient
  */
@@ -570,6 +605,8 @@ export interface PrintableFacility {
   address?: string | null
   contact_number?: string | null
   email?: string | null
+  logo_url?: string | null
+  theme?: ClinicTheme | null
 }
 
 export interface PrintablePatient {

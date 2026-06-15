@@ -25,21 +25,21 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:8000',
-      appName: process.env.NUXT_PUBLIC_APP_NAME || 'ClinicMS',
+      appName: process.env.NUXT_PUBLIC_APP_NAME || 'HoneyComb-EHR',
       defaultTenant: process.env.NUXT_PUBLIC_DEFAULT_TENANT || 'default',
     },
   },
 
   app: {
     head: {
-      title: 'ClinicMS - Clinic Management System',
+      title: 'HoneyComb-EHR for Healthcare Providers',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Multi-tenant Clinic Management System' },
+        { name: 'description', content: 'Multi-tenant Electronic Health Record System' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '~/assets/logo/honeycomb-ehr-app-icon.png' },
         {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',

@@ -4,11 +4,13 @@
       <aside class="hidden w-72 shrink-0 border-r border-sidebar-border bg-sidebar text-sidebar-foreground lg:flex lg:flex-col">
         <div class="px-5 py-5">
           <div class="flex items-center gap-3">
-            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-sidebar-primary text-sidebar-primary-foreground shadow-lg shadow-primary/20">
-              <HeartPulse class="h-5 w-5" aria-hidden="true" />
-            </div>
+            <img
+              :src="appIconUrl"
+              :alt="`${config.public.appName} logo`"
+              class="h-11 w-11 rounded-2xl object-cover shadow-lg shadow-primary/20"
+            >
             <div>
-              <p class="text-base font-bold">ClinicMS</p>
+              <p class="text-base font-bold">{{ config.public.appName }}</p>
               <p class="text-xs text-sidebar-foreground/60">{{ tenantLabel }}</p>
             </div>
           </div>
@@ -85,7 +87,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
   Bell,
@@ -95,17 +97,21 @@ import {
   FileText,
   FolderCog,
   Landmark,
-  HeartPulse,
   Home,
   Image,
   LogOut,
   Pill,
+  Settings,
   TestTube2,
   Users,
 } from 'lucide-vue-next'
 import type { Component } from 'vue'
+import type { ClinicProfileResponse } from '~/types'
+import { useApi } from '~/composables/useApi'
 import { useAuthStore } from '~/stores/auth'
 import { useTenantStore } from '~/stores/tenant'
+import { applyClinicTheme } from '~/utils/clinicTheme'
+import appIconUrl from '~/assets/logo/honeycomb-ehr-app-icon.png'
 
 interface NavItem {
   label: string
@@ -118,7 +124,8 @@ const route = useRoute()
 const router = useRouter()
 const auth = useAuthStore()
 const tenantStore = useTenantStore()
-
+const api = useApi()
+const config = useRuntimeConfig()
 const tenant = computed(() => String(route.params.tenant ?? tenantStore.currentTenant?.slug ?? 'default'))
 const permissions = computed(() => auth.user?.permissions ?? [])
 const roles = computed(() => auth.user?.roles ?? [])
@@ -132,6 +139,7 @@ const isRadTech = computed(() => roles.value.includes('radtech'))
 const isCashier = computed(() => roles.value.includes('cashier'))
 const canViewPatients = computed(() => isSuperAdmin.value || permissions.value.length === 0 || permissions.value.includes('patients.viewAny'))
 const canManageCatalogs = computed(() => isSuperAdmin.value || isAdmin.value || permissions.value.includes('manage_catalogs'))
+const canViewClinicProfile = computed(() => isSuperAdmin.value || isAdmin.value || permissions.value.includes('tenant.settings.view'))
 const canViewAppointments = computed(() => isSuperAdmin.value || isAdmin.value || isClinician.value || isReceptionist.value)
 const canViewLab = computed(() => isSuperAdmin.value || isAdmin.value || isMedTech.value || isReceptionist.value)
 const canViewImaging = computed(() => isSuperAdmin.value || isAdmin.value || isRadTech.value || isReceptionist.value)
@@ -155,6 +163,14 @@ const initials = computed(() => {
   return name.split(' ').map((part) => part[0]).join('').slice(0, 2).toUpperCase()
 })
 
+onMounted(fetchClinicProfileBranding)
+
+watch(
+  () => tenantStore.defaultClinic?.theme,
+  (theme) => applyClinicTheme(theme),
+  { immediate: true },
+)
+
 const navItems = computed<NavItem[]>(() => [
   { label: 'Dashboard', to: `/${tenant.value}/dashboard`, icon: Home },
   { label: 'Patients', to: `/${tenant.value}/patients`, icon: Users, visible: canViewPatients.value },
@@ -163,6 +179,7 @@ const navItems = computed<NavItem[]>(() => [
   { label: 'Imaging', to: `/${tenant.value}/imaging`, icon: Image, visible: canViewImaging.value },
   { label: 'Pharmacy', to: `/${tenant.value}/pharmacy`, icon: Pill, visible: canViewPharmacy.value },
   { label: 'Billing', to: `/${tenant.value}/billing`, icon: CreditCard, visible: canViewBilling.value },
+  { label: 'Clinic Profile', to: `/${tenant.value}/settings/clinic`, icon: Settings, visible: canViewClinicProfile.value },
   { label: 'Catalogs', to: `/${tenant.value}/settings/catalogs`, icon: FolderCog, visible: canManageCatalogs.value },
   { label: 'Payment modes', to: `/${tenant.value}/settings/payment-modes`, icon: Landmark, visible: isSuperAdmin.value },
   { label: 'Records', to: `/${tenant.value}/records`, icon: FileText, visible: canViewRecords.value },
@@ -188,6 +205,28 @@ function isActive(path: string): boolean {
 function signOut() {
   auth.clearAuth()
   tenantStore.clearTenant()
+  applyClinicTheme(null)
   router.push('/login')
+}
+
+async function fetchClinicProfileBranding() {
+  if (!auth.token) {
+    applyClinicTheme(null)
+    return
+  }
+
+  try {
+    const res = await api.api<ClinicProfileResponse>(`/api/v1/${tenant.value}/settings/clinic-profile`)
+    if (res.success) {
+      tenantStore.setClinicProfile(res.data)
+      return
+    }
+
+    applyClinicTheme(null)
+    console.warn('Clinic profile branding could not be loaded.', res.message)
+  } catch (error) {
+    applyClinicTheme(null)
+    console.warn('Clinic profile branding could not be loaded.', error)
+  }
 }
 </script>

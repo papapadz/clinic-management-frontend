@@ -15,9 +15,13 @@ export default defineNuxtPlugin(() => {
     path: string,
     options: Parameters<typeof $fetch>[1] = {},
   ): Promise<ApiResponse<T>> {
+    const isFormData = options.body instanceof FormData
     const headers: Record<string, string> = {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
+    }
+
+    if (!isFormData) {
+      headers['Content-Type'] = 'application/json'
     }
 
     if (authStore.token) {

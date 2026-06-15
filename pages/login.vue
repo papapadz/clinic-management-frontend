@@ -2,7 +2,7 @@
   <div class="space-y-6">
     <div>
       <p class="text-sm font-bold uppercase tracking-[0.18em] text-primary">Welcome back</p>
-      <h1 class="mt-2 text-3xl font-bold tracking-normal">Sign in to ClinicMS</h1>
+      <h1 class="mt-2 text-3xl font-bold tracking-normal">Sign in to {{ config.public.appName }}</h1>
       <p class="mt-2 text-sm leading-6 text-muted-foreground">Open your clinic workspace and continue today’s patient flow.</p>
     </div>
 
